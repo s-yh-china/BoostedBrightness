@@ -21,7 +21,7 @@ import java.util.function.Function;
 @Pseudo
 @Mixin(OptionImpl.class)
 public class MixinOptionImpl<S, T> {
-    @Shadow
+    @Shadow(remap = false)
     @Final
     @Mutable
     private OptionBinding<S, T> binding;

@@ -14,22 +14,22 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Pseudo
 @Mixin(SliderControl.class)
 public class MixinSliderControl {
-    @Shadow
+    @Shadow(remap = false)
     @Final
     @Mutable
     private int min;
 
-    @Shadow
+    @Shadow(remap = false)
     @Final
     @Mutable
     private int max;
 
-    @Shadow
+    @Shadow(remap = false)
     @Final
     @Mutable
     private int interval;
 
-    @Inject(at = @At("RETURN"), method = "<init>")
+    @Inject(at = @At("RETURN"), method = "<init>", remap = false)
     private void init(Option<Integer> option, int min, int max, int interval, ControlValueFormatter mode, CallbackInfo info) {
         if (option.getName().getContent() instanceof TranslatableTextContent content && content.getKey().equals("options.gamma")) {
             this.min = (int) (BoostedBrightness.minBrightness * 100);
